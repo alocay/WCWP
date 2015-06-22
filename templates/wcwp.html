@@ -1,0 +1,18 @@
+<img src="{{ user.avatar }}" />
+{{ user.personaname }}
+<a href='steamauth/logout.php'>Log out</a>
+<br />
+<p>You are logged in</p>
+<p>Content goes here</p>
+
+<a id="test" href="#">Test</a>
+
+<div id="friends" style="display:inline-block">
+	<ul id="friends-list"></ul>
+</div>
+
+<div style="display:inline-block">
+	<ul id="game-list"></ul>
+</div>
+
+<input id="steamid" type="hidden" value="{{ user.steamid }}" />
