@@ -15,14 +15,8 @@ $(document).ready(function() {
         $("#friends-list").on("click", ".friend", function (data) {
             var steamid = this.getAttribute("data-steamid");
             $("#game-list").empty();
-            compareGames(steamid);
-            //getAndShowGameList(steamid);
+            compareAndShowGames(steamid);
         });
-        
-        $.get("php/wcwp_gamemulti.php", { appid: 212680 })
-            .done(function (html) {
-                var data = html;
-            });
     }
     
     getGameList(userSteamId, postInitFunction);
@@ -49,29 +43,12 @@ $(document).ready(function() {
             });
     }
     
-    function compareGames(steamid) {
+    function compareAndShowGames(steamid) {
         $.get("php/wcwp_compare.php", { userid: userSteamId, friendid: steamid })
             .done(function (matchedGames) {
-                showGameList(matchedGames);
+                showGameList(JSON.parse(matchedGames));
             });
-        
     }
-    
-    /*var compareFunction = function (games) {
-            var matchedGames = [];
-            for (var i = 0; i < games.length; i++) {
-                for (var j = 0; j < userGameList.length; j++) {
-                    if (games[i].name === userGameList[j].name) {
-                        matchedGames.push(games[i]);
-                        break;
-                    }
-                }
-            }
-            
-            showGameList(matchedGames);
-        };
-        
-        getGameList(steamid, compareFunction);*/
     
     function getGameList(steamid, doneCallback) {
         $.get("php/wcwp_gamelist.php", { steamid: steamid })
@@ -93,7 +70,8 @@ $(document).ready(function() {
     function showGameList(games) {
         var gameListElement = $("#game-list");
         for (var i = 0; i < games.length; i++) {
-            gameListElement.append('<li class="game"><span><img src="' + games[i].img_icon_url + '" /></span><span>' + games[i].name + '</span></li>');
+        	var gameIconUrl = "http://media.steampowered.com/steamcommunity/public/images/apps/" + games[i].appid + "/" + games[i].img_icon_url + ".jpg";
+            gameListElement.append('<li class="game"><span><img src="' + gameIconUrl + '" /></span><span>' + games[i].name + '</span></li>');
         }
     }
 });

@@ -278,3 +278,34 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+body {
+	background-color: #111;
+}
+
+#main-content {
+	width: 75%;
+	margin: auto;
+	margin-top: 6em;
+	padding: 6.5em;
+	text-align: center;
+	border-radius: 1.5em;
+	background-color: #222;
+}
+
+.login-container {
+	width: 50%;
+	margin: auto;
+	border-radius: 1.5em;
+	background-color: #ccc;
+}
+
+.login-title {
+	padding-top: 1.25em;
+	padding-bottom: 3.12em;
+	letter-spacing: 0.05em;
+}
+
+.login-button {
+	padding-bottom: 1.25em;
+}
