@@ -33,16 +33,21 @@ body {
   padding-bottom: 1.25em;
 }
 
-#friends {
-  margin: auto;
+#friends, #games {
+  position: relative;
+  margin: 0 auto;
+  min-width: 2.5em;
+  min-height: 29.69em;
   border-radius: 1.5em;
   background-color: #ccc;
 }
 
-#games {
-  margin: auto;
-  border-radius: 1.5em;
-  background-color: #ccc;
+.loading {
+	position: absolute;
+	top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #precompare-message {
