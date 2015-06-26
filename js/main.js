@@ -21,6 +21,29 @@ $(document).ready(function() {
     
     getGameList(userSteamId, postInitFunction);
     
+    /*
+     * Thanks goes to tobiasahlin for this code snippet (https://github.com/tobiasahlin)
+     */
+    function browserSupportsCSSProperty(propertyName) {
+        var element = document.createElement('div');
+        propertyName = propertyName.toLowerCase();
+    
+        if (element.style[propertyName] != undefined) {
+            return true;
+        }
+    
+        var propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1),
+            domPrefixes = 'Webkit Moz ms O'.split(' ');
+    
+        for (var i = 0; i < domPrefixes.length; i++) {
+            if (element.style[domPrefixes[i] + propertyNameCapital] != undefined) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+    
     function getAndShowFriends(friendsList) {
         var friendsListElement = $("#friends-list");
         var steamids = "";
@@ -38,7 +61,7 @@ $(document).ready(function() {
                 
                 for (var i = 0; i < userdata.response.players.length; i++) {
                     var player = userdata.response.players[i];
-                    friendsListElement.append('<li class="friend" data-steamid="' + player.steamid +'"><span><img src="' + player.avatar + '" /></span><span>' + player.personaname + '</span></li>');
+                    friendsListElement.append('<li class="friend" data-steamid="' + player.steamid +'"><span class="friend-img"><img src="' + player.avatar + '" /></span><span class="friend-name">' + player.personaname + '</span></li>');
                 }
             });
     }
@@ -71,7 +94,7 @@ $(document).ready(function() {
         var gameListElement = $("#game-list");
         for (var i = 0; i < games.length; i++) {
         	var gameIconUrl = "http://media.steampowered.com/steamcommunity/public/images/apps/" + games[i].appid + "/" + games[i].img_icon_url + ".jpg";
-            gameListElement.append('<li class="game"><span><img src="' + gameIconUrl + '" /></span><span>' + games[i].name + '</span></li>');
+            gameListElement.append('<li class="game"><span class="game-img"><img src="' + gameIconUrl + '" /></span><span class="game-name">' + games[i].name + '</span></li>');
         }
     }
 });

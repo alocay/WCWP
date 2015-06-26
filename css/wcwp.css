@@ -1,0 +1,69 @@
+body {
+  background-color: #111;
+}
+
+.hidden {
+  display: none;
+}
+
+#main-content {
+  width: 75%;
+  margin: auto;
+  margin-top: 6em;
+  padding: 6.5em;
+  text-align: center;
+  border-radius: 1.5em;
+  background-color: #222;
+}
+
+.login-container {
+  width: 50%;
+  margin: auto;
+  border-radius: 1.5em;
+  background-color: #ccc;
+}
+
+.login-title {
+  padding-top: 1.25em;
+  padding-bottom: 3.12em;
+  letter-spacing: 0.05em;
+}
+
+.login-button {
+  padding-bottom: 1.25em;
+}
+
+#friends {
+  margin: auto;
+  border-radius: 1.5em;
+  background-color: #ccc;
+}
+
+#games {
+  margin: auto;
+  border-radius: 1.5em;
+  background-color: #ccc;
+}
+
+#precompare-message {
+  letter-spacing: 0.05em;
+}
+
+.list {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style: none
+  list-style-type:none;
+  margin-left: 0;
+}
+
+.friend, .game {
+  text-align: left;
+  margin: 0.625em 0;
+  font-size: 0.75em;
+}
+
+.friend-img, .game-img {
+  margin-right: 0.5em;
+}
