@@ -15,6 +15,7 @@ $(document).ready(function() {
         $("#friends-list").on("click", ".friend", function (data) {
             var steamid = this.getAttribute("data-steamid");
             $("#game-list").empty();
+            showGameSectionLoading();
             compareAndShowGames(steamid);
         });
     }
@@ -63,6 +64,9 @@ $(document).ready(function() {
                     var player = userdata.response.players[i];
                     friendsListElement.append('<li class="friend" data-steamid="' + player.steamid +'"><span class="friend-img"><img src="' + player.avatar + '" /></span><span class="friend-name">' + player.personaname + '</span></li>');
                 }
+                
+                hideFriendsSectionLoading();
+                showInitialGamesSection();
             });
     }
     
@@ -70,6 +74,7 @@ $(document).ready(function() {
         $.get("php/wcwp_compare.php", { userid: userSteamId, friendid: steamid })
             .done(function (matchedGames) {
                 showGameList(JSON.parse(matchedGames));
+                
             });
     }
     
@@ -96,5 +101,25 @@ $(document).ready(function() {
         	var gameIconUrl = "http://media.steampowered.com/steamcommunity/public/images/apps/" + games[i].appid + "/" + games[i].img_icon_url + ".jpg";
             gameListElement.append('<li class="game"><span class="game-img"><img src="' + gameIconUrl + '" /></span><span class="game-name">' + games[i].name + '</span></li>');
         }
+        
+        hideGameSectionLoading();
+    }
+    
+    function hideFriendsSectionLoading() {
+    	$("#friends .loading").addClass("hidden");
+    }
+    
+    function showInitialGamesSection() {
+    	$("#games").removeClass("hidden");
+    	$("#precompare-message").removeClass("hidden");
+    }
+    
+    function showGameSectionLoading() {
+    	$("#precompare-message").addClass("hidden");
+    	$("#games .loading").removeClass("hidden");
+    }
+    
+    function hideGameSectionLoading() {
+    	$("#games .loading").addClass("hidden");
     }
 });
