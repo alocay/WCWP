@@ -1,9 +1,16 @@
 $(document).ready(function() {
     var userSteamId = $("#steamid").val();
+    var userName = $("#username").val();
+    var userFriendsList = null;
     var userGameList = [];
+    var fuseSearch = null;
     
     var postInitFunction = function (games) {
         userGameList = games;
+        
+        showFriendsSectionLoading("Getting friends list...");
+        showGamesSectionLoading("Waiting on friends...");
+        
         if (userSteamId) {
             $.get("php/wcwp_friends.php", { steamid: userSteamId })
                 .done(function (json) {
@@ -12,18 +19,24 @@ $(document).ready(function() {
                 });
         }
         
+        $("#friends-search-text").on("input paste", function() {
+            searchAndDisplayResults(this.value);
+        });
+        
         $("#friends-list").on("click", ".friend", function (data) {
             var steamid = this.getAttribute("data-steamid");
             $("#game-list").empty();
-            showGameSectionLoading();
+            showGamesSectionLoading("Comparing games...");
             compareAndShowGames(steamid);
         });
     }
     
+    showFriendsSectionLoading("Getting " + userName + "'s games...");
+    showGamesSectionLoading("Getting " + userName + "'s games...");
     getGameList(userSteamId, postInitFunction);
     
     /*
-     * Thanks goes to tobiasahlin for this code snippet (https://github.com/tobiasahlin)
+     * Thanks goes to tobiasahlin for this browserSupportsCSSProperty function (https://github.com/tobiasahlin)
      */
     function browserSupportsCSSProperty(propertyName) {
         var element = document.createElement('div');
@@ -46,7 +59,6 @@ $(document).ready(function() {
     }
     
     function getAndShowFriends(friendsList) {
-        var friendsListElement = $("#friends-list");
         var steamids = "";
         for (var i = 0; i < friendsList.length; i++) {
             steamids = steamids.concat(friendsList[i].steamid);
@@ -60,21 +72,32 @@ $(document).ready(function() {
             .done(function (json) {
                 var userdata = JSON.parse(json);
                 
-                for (var i = 0; i < userdata.response.players.length; i++) {
-                    var player = userdata.response.players[i];
-                    friendsListElement.append('<li class="friend" data-steamid="' + player.steamid +'"><span class="friend-img"><img src="' + player.avatar + '" /></span><span class="friend-name">' + player.personaname + '</span></li>');
+                if (userdata && userdata.response && userdata.response.players) {
+                    userFriendsList = userdata.response.players;
+                    setUpSearchOptions(userFriendsList);
+                    
+                    showFriendsList(userdata.response.players);
+                    
+                    hideFriendsSectionLoading();
+                    hideGameSectionLoading();
+                    showGamesSectionChooseFriend();
                 }
-                
-                hideFriendsSectionLoading();
-                showInitialGamesSection();
             });
+    }
+    
+    function showFriendsList(friends) {
+        var friendsListElement = $("#friends-list");
+        friendsListElement.empty();
+        for (var i = 0; i < friends.length; i++) {
+            var player = friends[i];
+            friendsListElement.append('<li class="friend" data-steamid="' + player.steamid +'"><span class="friend-img"><img src="' + player.avatar + '" /></span><span class="friend-name">' + player.personaname + '</span></li>');
+        }
     }
     
     function compareAndShowGames(steamid) {
         $.get("php/wcwp_compare.php", { userid: userSteamId, friendid: steamid })
             .done(function (matchedGames) {
                 showGameList(JSON.parse(matchedGames));
-                
             });
     }
     
@@ -105,18 +128,44 @@ $(document).ready(function() {
         hideGameSectionLoading();
     }
     
+    function setUpSearchOptions(searchData) {
+        if(!fuseSearch) {
+            var searchOptions = {
+                shouldSort: true,
+                keys: ['personaname']
+            };
+            
+            fuseSearch = new Fuse(searchData, searchOptions);
+        }
+    }
+    
+    function searchAndDisplayResults(searchValue) {
+        var results = userFriendsList;
+        
+        if (searchValue && searchValue !== "") {
+            results = fuseSearch.search(searchValue);   
+        }
+        
+        showFriendsList(results);        
+    }
+    
+    function showFriendsSectionLoading(message) {
+        $("#friends .loading-message").text(message);
+        $("#friends .loading").removeClass("hidden");
+    }
+    
     function hideFriendsSectionLoading() {
     	$("#friends .loading").addClass("hidden");
     }
     
-    function showInitialGamesSection() {
-    	$("#games").removeClass("hidden");
-    	$("#precompare-message").removeClass("hidden");
+    function showGamesSectionLoading(message) {
+        $("#precompare-message").addClass("hidden");
+        $("#games .loading-message").text(message);
+        $("#games .loading").removeClass("hidden");
     }
     
-    function showGameSectionLoading() {
-    	$("#precompare-message").addClass("hidden");
-    	$("#games .loading").removeClass("hidden");
+    function showGamesSectionChooseFriend() {
+    	$("#precompare-message").removeClass("hidden");
     }
     
     function hideGameSectionLoading() {

@@ -1,5 +1,5 @@
 body {
-  background-color: #111;
+    background-color: #111;
 }
 
 a {
@@ -61,13 +61,20 @@ a:link {
 }
 
 #friends, #games {
-  position: relative;
-  margin: 0 auto;
-  min-width: 2.5em;
-  min-height: 29.69em;
-  border-radius: 1.5em;
-  background-color: #ccc;
-  padding: 0.5em
+    position: relative;
+    margin: 0 auto;
+    min-width: 2.5em;
+    min-height: 29.69em;
+    max-height: 29.69em;
+    background-color: #ccc;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+#games {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
 }
 
 .loading {
@@ -78,30 +85,53 @@ a:link {
     bottom: 0;
 }
 
+.loading-message {
+    margin-top: 0.625em;
+    text-align: center;
+    font-size: 0.7em;
+}
+
 #precompare-message {
-  position: absolute;
-  letter-spacing: 0.05em;
-  top: 20%;
-  left: 0;
-  bottom: 0;
-  right: 0;
+    position: absolute;
+    letter-spacing: 0.05em;
+    top: 20%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#friends-search-text {
+    margin-top: 0.625em;
 }
 
 .list {
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  list-style: none
-  list-style-type:none;
-  margin-left: 0;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
 }
 
 .friend, .game {
-  text-align: left;
-  margin: 0.625em 0;
-  font-size: 0.75em;
+    list-style-type: none;
+    text-align: left;
+    margin: 0.625em 0;
+    font-size: 0.75em;
+    padding: 0.35em;
+}
+
+li.friend { 
+    cursor: pointer; 
+}
+
+li.friend:hover {
+    background-color: #444;
+    color: #ff6600;
+}
+
+li.game {
+    cursor: default;
 }
 
 .friend-img, .game-img {
-  margin-right: 0.5em;
+    margin-right: 0.5em;
 }
