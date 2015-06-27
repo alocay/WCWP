@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var userSteamId = $("#steamid").val();
-    var userName = $("#username").val();
+    var userName = $("#personaname").val();
     var userFriendsList = null;
     var userGameList = [];
     var fuseSearch = null;

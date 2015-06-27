@@ -1,14 +1,6 @@
-<div id="header">
-	<img src="{{ user.avatar }}" />
-	{{ user.personaname }} | 
-	<a href='steamauth/logout.php'>Log out</a>
-</div>
-
-<div id="title">What Can We Play?</div>
-
 <div class="pure-g">
-    <div class="section-title pure-u-1-5">Friends</div>
-    <div class="section-title pure-u-3-4">Games</div>
+    <div class="section-title pure-u-1-5 custom-font">Friends</div>
+    <div class="section-title pure-u-3-4 custom-font">Games</div>
 </div>
 <div class="pure-g">
     <div id="friends" class="pure-u-1-5">
@@ -20,16 +12,16 @@
                 <div class="sk-rect4"></div>
                 <div class="sk-rect5"></div>
             </div>
-            <div class="loading-message"></div>
+            <div class="loading-message custom-font"></div>
         </div>
         <div id="friends-search">
             <input id="friends-search-text" type="text" placeholder="Search for friends"/>
         </div>
-    	<ul id="friends-list" class="list"></ul>
+    	<ul id="friends-list" class="list custom-font"></ul>
     </div>
     
     <div id="games" class="pure-u-3-4">
-        <span id="precompare-message" class="hidden">Choose a friend from the list on the left to see what games you can play together.</span>
+        <span id="precompare-message" class="hidden custom-font">Choose a friend from the list on the left to see what games you can play together.</span>
         <div class="loading hidden">
             <div class="sk-spinner sk-spinner-wave">
                 <div class="sk-rect1"></div>
@@ -38,11 +30,11 @@
                 <div class="sk-rect4"></div>
                 <div class="sk-rect5"></div>
             </div>
-            <div class="loading-message"></div>
+            <div class="loading-message custom-font"></div>
         </div>
-    	<ul id="game-list" class="list"></ul>
+    	<ul id="game-list" class="list custom-font"></ul>
     </div>
 </div>
 
 <input id="steamid" type="hidden" value="{{ user.steamid }}" />
-<input id="username" type="hidden" value="{{ user.personaname }}" />
+<input id="personaname" type="hidden" value="{{ user.personaname }}" />
