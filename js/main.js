@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    initialHideAllMessages();
+    
     var userSteamId = $("#steamid").val();
     var userName = $("#personaname").val();
     var userFriendsList = null;
@@ -80,7 +82,7 @@ $(document).ready(function() {
                     
                     hideFriendsSectionLoading();
                     hideGameSectionLoading();
-                    showGamesSectionChooseFriend();
+                    showGamesMessage("Choose a friend from the list on the left to see what games you can play together.");
                 }
             });
     }
@@ -120,9 +122,15 @@ $(document).ready(function() {
     
     function showGameList(games) {
         var gameListElement = $("#game-list");
-        for (var i = 0; i < games.length; i++) {
-        	var gameIconUrl = "http://media.steampowered.com/steamcommunity/public/images/apps/" + games[i].appid + "/" + games[i].img_icon_url + ".jpg";
-            gameListElement.append('<li class="game"><span class="game-img"><img src="' + gameIconUrl + '" /></span><span class="game-name">' + games[i].name + '</span></li>');
+        
+        if (games.length == 0) {
+            showGamesMessage("No common games found!");
+        }
+        else {
+            for (var i = 0; i < games.length; i++) {
+                var gameIconUrl = "http://media.steampowered.com/steamcommunity/public/images/apps/" + games[i].appid + "/" + games[i].img_icon_url + ".jpg";
+                gameListElement.append('<li class="game"><span class="game-img"><img src="' + gameIconUrl + '" /></span><span class="game-name">' + games[i].name + '</span></li>');
+            }
         }
         
         hideGameSectionLoading();
@@ -149,26 +157,32 @@ $(document).ready(function() {
         showFriendsList(results);        
     }
     
+    function initialHideAllMessages() {
+        $(".loading").hide();
+        $("#games-message").hide();
+    }
+    
     function showFriendsSectionLoading(message) {
         $("#friends .loading-message").text(message);
-        $("#friends .loading").removeClass("hidden");
+        $("#friends .loading").show();
     }
     
     function hideFriendsSectionLoading() {
-    	$("#friends .loading").addClass("hidden");
+    	$("#friends .loading").hide();
     }
     
     function showGamesSectionLoading(message) {
-        $("#precompare-message").addClass("hidden");
+        $("#games-message").hide();
         $("#games .loading-message").text(message);
-        $("#games .loading").removeClass("hidden");
+        $("#games .loading").show();
     }
     
-    function showGamesSectionChooseFriend() {
-    	$("#precompare-message").removeClass("hidden");
+    function showGamesMessage(message) {
+        $("#games-message").text(message);
+    	$("#games-message").show();
     }
     
     function hideGameSectionLoading() {
-    	$("#games .loading").addClass("hidden");
+    	$("#games .loading").hide();
     }
 });
