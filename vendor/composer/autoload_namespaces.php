@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
-    'OAuth2' => array($vendorDir . '/adoy/oauth2/src'),
 );

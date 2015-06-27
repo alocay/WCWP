@@ -1,3 +1,20 @@
+/*  Webkit scroll bar styling */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+/* End Webkit scroll bar styling */
 
 html, body {
     height: 98%;
@@ -10,10 +27,6 @@ a {
 
 a:link {
     text-decoration: none;
-}
-
-.hidden {
-  display: none;
 }
 
 .custom-font {
@@ -85,6 +98,16 @@ a:link {
     overflow: auto;
 }
 
+.disabled {
+    pointer-events: none;
+    background-color: rgba(204, 204, 204, 0.4) !important;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.disabled img, .disabled input {
+    opacity: 0.4;
+}
+
 #games {
     columns: 3;
     -webkit-columns: 3;
@@ -92,6 +115,7 @@ a:link {
 }
 
 .loading {
+	display: none;
 	position: absolute;
 	top: 50%;
     left: 0;
@@ -105,7 +129,16 @@ a:link {
     font-size: 0.7em;
 }
 
+.loading-disabled .sk-spinner div {
+    background-color: #ccc;
+}
+
+.loading-disabled .loading-message {
+    color: #ccc;
+}
+
 #games-message {
+	display: none;
     position: absolute;
     letter-spacing: 0.05em;
     top: 20%;
@@ -115,6 +148,7 @@ a:link {
 }
 
 #friends-search-text {
+	max-width: 9.375em;
     margin-top: 0.625em;
 }
 
@@ -136,7 +170,7 @@ li.friend {
     cursor: pointer; 
 }
 
-li.friend:hover {
+li.friend:hover, li.selected {
     background-color: #444;
     color: #ff6600;
 }
@@ -159,12 +193,12 @@ li.game {
     text-align: center;
 }
 
-#footer a, #footer span {
+#footer a {
     margin-left: 0.625em;
     margin-right: 0.625em;
 }
 
-#footer-name {
+#armando-link {
     color: #ff6600;
 }
 

@@ -4,76 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "27172bca210f9209d1869782016898dd",
+    "hash": "690623613245a87a350dd06d7805384d",
     "packages": [
         {
-            "name": "adoy/oauth2",
-            "version": "dev-master",
+            "name": "klein/klein",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/adoy/PHP-OAuth2.git",
-                "reference": "8b39849eba97b439940bb92a70d820a8235a183d"
+                "url": "https://github.com/chriso/klein.php.git",
+                "reference": "5dc073f05adb67ee09680545b4cc7b0590d2559e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adoy/PHP-OAuth2/zipball/8b39849eba97b439940bb92a70d820a8235a183d",
-                "reference": "8b39849eba97b439940bb92a70d820a8235a183d",
+                "url": "https://api.github.com/repos/chriso/klein.php/zipball/5dc073f05adb67ee09680545b4cc7b0590d2559e",
+                "reference": "5dc073f05adb67ee09680545b4cc7b0590d2559e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "OAuth2": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1"
-            ],
-            "authors": [
-                {
-                    "name": "Berejeb Anis",
-                    "email": "anis.berejeb@gmail.com"
-                },
-                {
-                    "name": "Charron Pierrick",
-                    "email": "pierrick@webstart.fr"
-                }
-            ],
-            "description": "Light PHP wrapper for the OAuth 2.0 protocol (based on OAuth 2.0 Authorization Protocol draft-ietf-oauth-v2-15)",
-            "time": "2015-05-21 14:17:01"
-        },
-        {
-            "name": "auth0/auth0-php",
-            "version": "1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/auth0/auth0-PHP.git",
-                "reference": "c19d3b02bd72b9c9fbc420ab6eb4155d6d7e09eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/c19d3b02bd72b9c9fbc420ab6eb4155d6d7e09eb",
-                "reference": "c19d3b02bd72b9c9fbc420ab6eb4155d6d7e09eb",
-                "shasum": ""
-            },
-            "require": {
-                "adoy/oauth2": "dev-master",
-                "ext-json": "*",
-                "firebase/php-jwt": "dev-master",
-                "guzzlehttp/guzzle": "~5.0",
-                "php": ">=5.3.0"
-            },
             "require-dev": {
-                "phpunit/phpunit": "4.6.*"
+                "phpunit/php-code-coverage": "1.2.x",
+                "phpunit/phpunit": "3.7.x",
+                "squizlabs/php_codesniffer": "1.4.8"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Auth0\\SDK\\": "src/"
+                    "Klein\\": "src/Klein/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -82,260 +40,27 @@
             ],
             "authors": [
                 {
-                    "name": "Auth0",
-                    "email": "support@auth0.com",
-                    "homepage": "http://www.auth0.com/"
-                }
-            ],
-            "description": "Auth0 PHP SDK.",
-            "time": "2015-06-12 17:14:23"
-        },
-        {
-            "name": "firebase/php-jwt",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "30a066878c44ad9676f87edf373cc7b74f0192b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/30a066878c44ad9676f87edf373cc7b74f0192b7",
-                "reference": "30a066878c44ad9676f87edf373cc7b74f0192b7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Authentication/",
-                    "Exceptions/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Neuman Vong",
-                    "email": "neuman+pear@twilio.com",
-                    "role": "Developer"
+                    "name": "Chris O'Hara",
+                    "email": "cohara87@gmail.com",
+                    "homepage": "http://chris6f.com/",
+                    "role": "Creator/Developer"
                 },
                 {
-                    "name": "Anant Narayanan",
-                    "email": "anant@php.net",
-                    "role": "Developer"
+                    "name": "Trevor Suarez",
+                    "email": "rican7@gmail.com",
+                    "homepage": "http://about.me/tnsuarez",
+                    "role": "Contributor/Developer"
                 }
             ],
-            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
-            "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2015-05-20 19:22:10"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "5.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f3c8c22471cb55475105c14769644a49c3262b93"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f3c8c22471cb55475105c14769644a49c3262b93",
-                "reference": "f3c8c22471cb55475105c14769644a49c3262b93",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/ringphp": "^1.1",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.0",
-                "psr/log": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
+            "description": "A lightning fast router for PHP",
+            "homepage": "https://github.com/chriso/klein.php",
             "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
+                "boilerplate",
+                "router",
+                "routing",
+                "sinatra"
             ],
-            "time": "2015-05-20 03:47:55"
-        },
-        {
-            "name": "guzzlehttp/ringphp",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/streams": "~3.0",
-                "php": ">=5.4.0",
-                "react/promise": "~2.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Ring\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2015-05-20 03:37:09"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-10-12 19:18:40"
-        },
-        {
-            "name": "react/promise",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp/promise.git",
-                "reference": "365fcee430dfa4ace1fbc75737ca60ceea7eeeef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/365fcee430dfa4ace1fbc75737ca60ceea7eeeef",
-                "reference": "365fcee430dfa4ace1fbc75737ca60ceea7eeeef",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "React\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Sorgalla",
-                    "email": "jsorgalla@googlemail.com"
-                }
-            ],
-            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
-            "time": "2014-12-30 13:32:42"
+            "time": "2014-11-07 07:35:23"
         },
         {
             "name": "twig/twig",
@@ -450,8 +175,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "firebase/php-jwt": 20,
-        "adoy/oauth2": 20,
         "vlucas/phpdotenv": 20
     },
     "prefer-stable": false,
