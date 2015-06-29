@@ -47,7 +47,7 @@ $(document).ready(function() {
     
     showFriendsSectionLoading("Getting " + userName + "'s games...");
     showGamesSectionLoading("Getting " + userName + "'s games...");
-    getGameList(userSteamId, postInitFunction);
+    getFilteredGameList(userSteamId, postInitFunction);
     
     /*
      * Thanks goes to tobiasahlin for this browserSupportsCSSProperty function (https://github.com/tobiasahlin)
@@ -113,12 +113,27 @@ $(document).ready(function() {
         }
     }
     
-    function compareAndShowGames(steamid) {
-        $.get("php/wcwp_compare.php", { userid: userSteamId, friendid: steamid })
-            .done(function (matchedGames) {
-                showGameList(JSON.parse(matchedGames));
- 				doneComparing();
-            });
+    function compareAndShowGames(friendSteamId) {
+        var compareGames = function (friendGames) {
+            $.post("php/wcwp_compare.php", { usergames: JSON.stringify(userGameList), friendgames: JSON.stringify(friendGames) })
+                .done(function (matchedGames) {
+                    showGameList(JSON.parse(matchedGames));
+                    doneComparing();
+                });
+        };
+        
+        getGameList(friendSteamId, compareGames);
+    }
+    
+    function getFilteredGameList(steamid, doneCallback) {
+        var filterGames = function (games) {
+            $.post("php/wcwp_filtergames.php", { usergames: JSON.stringify(games) })
+                .done(function (filteredGames) {
+                    doneCallback(JSON.parse(filteredGames));
+                });
+        };
+        
+        getGameList(steamid, filterGames);
     }
     
     function getGameList(steamid, doneCallback) {

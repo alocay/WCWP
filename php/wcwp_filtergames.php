@@ -1,10 +1,5 @@
 <?php
 
-    function get_gamelist_data($id) {
-	    $api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=8B8C86D67AB89F6F4F7CD347003F7CF5&steamid=" . $id . "&include_appinfo=1&include_played_free_games=1&format=json";
-	    return json_decode(file_get_contents($api_url));
-	}
-
 	function get_store_html_content($gamelist) {
 	    $games = $gamelist->{'response'}->{'games'};
 	    $mh = curl_multi_init();
@@ -61,31 +56,18 @@
 	    }
 	    
 	    return $filtered_games;
-	}
-
-	function compare_games($user_filtered_gamelist, $friend_gamelist) {
-	    $matched_games = array();
-	    $index = 0;
-	    foreach($user_filtered_gamelist as $user_game) {
-	        foreach($friend_gamelist as $friend_game) {
-	            if ($user_game->{'appid'} === $friend_game->{'appid'}) {
-	                $matched_games[$index] = $user_game;
-	                $index++;
-	            }
-	        }
-	    }
-	
-	    return $matched_games;
-	}
+    }
     
-    if (isset($_POST['usergames']) && isset($_POST['friendgames'])) {
+    if (isset($_POST['usergames'])) {
         $user_games = json_decode($_POST['usergames']);
-        $friend_games = json_decode($_POST['friendgames']);
+        
+		// get html game data
+		$html_data = get_store_html_content($user_games);
 		
-		// compare with friend's list
-        $matched_games = compare_games($user_games, $friend_games);
+		// filter out non-multiplayer and non-coop games
+        $filtered_user_games = filter_multiplayer_games($html_data);
         
 		// return results
-        echo json_encode($matched_games);
+        echo json_encode($filtered_user_games);
     }
 ?>
