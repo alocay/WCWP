@@ -1,7 +1,6 @@
 <?php
 
-	function get_store_html_content($gamelist) {
-	    $games = $gamelist->{'response'}->{'games'};
+	function get_store_html_content($games) {
 	    $mh = curl_multi_init();
 		$index = 0;
 		

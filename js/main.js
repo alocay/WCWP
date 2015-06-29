@@ -6,6 +6,8 @@ $(document).ready(function() {
     var fuseSearch = null;
     var selectedFriendListElement = null;
     var selectedFriendSteamId = null;
+    var MAX_CACHE_TIME = 30; // minutes
+    var cachedComparedResults = {};
     
     var postInitFunction = function (games) {
         userGameList = games;
